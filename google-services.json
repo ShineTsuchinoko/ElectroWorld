@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "144697461161",
+    "firebase_url": "https://holyenglish-c52a2.firebaseio.com",
+    "project_id": "holyenglish-c52a2",
+    "storage_bucket": "holyenglish-c52a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144697461161:android:0bc60706dc8d8feb",
+        "android_client_info": {
+          "package_name": "io.github.shinetsuchinoko.holyenglish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144697461161-vcn18igcfusgua3pn79sgb17ee6euevc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.shinetsuchinoko.holyenglish",
+            "certificate_hash": "e3dafeedd737a299682267e2bae9dcb2231483ec"
+          }
+        },
+        {
+          "client_id": "144697461161-765i4s2dthf2edatpgqmakei8j050klj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMddOnhlQ0tpXEQCQMq2qToykuyjY3z1c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144697461161-765i4s2dthf2edatpgqmakei8j050klj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
