@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -46,16 +48,16 @@ class MainFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main, container, false)
-        val position = arguments!!.getInt("position")
+//        val position = arguments!!.getInt("position")  // TODO: nullになる
+//
+//        mViewModel = ViewModelProviders.of(parentActivity)
+//                .get(position.toString(), MainFragmentViewModel::class.java)
 
-        mViewModel = ViewModelProviders.of(parentActivity)
-                .get(position.toString(), MainFragmentViewModel::class.java)
+        // RecyclerView作成 // TODO: kotlin extension を後で使い方調べる
+        val decksView = view.findViewById<RecyclerView>(R.id.decksRView)
+        decksView.layoutManager = LinearLayoutManager(parentActivity)
+        decksView.adapter = DeckListAdapter(mQuery, this@MainFragment)
 
-        // RecyclerView作成
-        decksRView.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = DeckListAdapter(mQuery, this@MainFragment)
-        }
 
         // Get Decks
 //        mDB.collection("decks")
