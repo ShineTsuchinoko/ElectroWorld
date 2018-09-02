@@ -22,13 +22,7 @@
             android:name=".TestPageActivity"
             android:label="@string/title_activity_test_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <service
-            android:name="io.github.shinetsuchinoko.holyenglish.Model.Storage.DownloadService"
-            android:exported="false"/>
 
-        <service
-            android:name="io.github.shinetsuchinoko.holyenglish.Model.Storage.MyUploadService"
-            android:exported="false" />
     </application>
 
 </manifest>

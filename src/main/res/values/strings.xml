@@ -32,4 +32,8 @@
     <string name="download_success">Download finished</string>
     <string name="download_failure">Download failure</string>
 
+    <!-- Twitter consumer key and secret -->
+    <string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>
+    <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
+
 </resources>

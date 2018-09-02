@@ -1,11 +1,6 @@
 package io.github.shinetsuchinoko.holyenglish
 
 import android.app.Activity
-import android.app.ProgressDialog
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
@@ -13,7 +8,6 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -25,13 +19,10 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.storage.images.FirebaseImageLoader
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import io.github.shinetsuchinoko.holyenglish.Model.Storage.DownloadService
-import io.github.shinetsuchinoko.holyenglish.Model.Storage.MyUploadService
 import io.realm.Realm
 
 import kotlinx.android.synthetic.main.activity_test_page.*
 import kotlinx.android.synthetic.main.fragment_test_page.view.*
-import java.util.*
 
 private val WORD_NAME: String = "WordName"
 private val IMAGE_PATH : String = "ImagePath"
@@ -46,43 +37,40 @@ class TestPageActivity : AppCompatActivity() {
      * may be best to switch to a
      * [android.support.v4.app.FragmentStatePagerAdapter].
      */
-    private val KEY_FILE_URI = "key_file_uri"
-    private val KEY_DOWNLOAD_URL = "key_download_url"
-    private val TAG = "TestPageActivity"
 
     private lateinit var mSectionsPagerAdapter: SectionsPagerAdapter
     private lateinit var mDownloadIterator: MutableIterator<String>
     private val mDownloadPaths: MutableList<String> = mutableListOf<String>(
-            "images/000001.jpg",
-            "images/000002.jpg",
-            "images/000003.jpg",
-            "images/000004.jpg",
-            "images/000005.jpg",
-            "images/000006.jpg",
-            "images/000007.jpg",
-            "images/000008.jpg",
-            "images/000009.jpg",
-            "images/000010.jpg",
-            "images/000011.jpg",
-            "images/000012.jpg",
-            "images/000013.jpg",
-            "images/000014.jpg",
-            "images/000015.jpg",
-            "images/000016.jpg",
-            "images/000017.jpg",
-            "images/000018.jpg",
-            "images/000019.jpg",
-            "images/000020.jpg",
-            "images/000021.jpg",
-            "images/000022.jpg",
-            "images/000023.jpg",
-            "images/000024.jpg",
-            "images/000025.jpg",
-            "images/000026.jpg",
-            "images/000027.jpg",
-            "images/000028.jpg",
-            "images/000029.jpg",
-            "images/000030.jpg"
+            "images/000001.png",
+            "images/000002.png",
+            "images/000003.png",
+            "images/000004.png",
+            "images/000005.png",
+            "images/000006.png",
+            "images/000007.png",
+            "images/000008.png",
+            "images/000009.png",
+            "images/000010.png",
+            "images/000011.png",
+            "images/000012.png",
+            "images/000013.png",
+            "images/000014.png",
+            "images/000015.png",
+            "images/000016.png",
+            "images/000017.png",
+            "images/000018.png",
+            "images/000019.png",
+            "images/000020.png",
+            "images/000021.png",
+            "images/000022.png",
+            "images/000023.png",
+            "images/000024.png",
+            "images/000025.png",
+            "images/000026.png",
+            "images/000027.png",
+            "images/000028.png",
+            "images/000029.png",
+            "images/000030.png"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,14 +78,15 @@ class TestPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_test_page)
 
         setSupportActionBar(toolbar)
+
+        mDownloadIterator = mDownloadPaths.iterator()
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, mDownloadPaths.size)
 
         // Set up the ViewPager with the sections adapter.
         container.adapter = mSectionsPagerAdapter
-
-        mDownloadIterator = mDownloadPaths.iterator()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
