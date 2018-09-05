@@ -29,6 +29,7 @@ class MainFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
     private lateinit var parentActivity: FragmentActivity
     private lateinit var mDB : FirebaseFirestore
     private lateinit var mQuery: Query
+    private lateinit var mAdapter: DeckListAdapter
     private val cards = "dards"
     private val TAG = "MainFragment"
     private lateinit var mViewModel: ViewModel
@@ -37,6 +38,10 @@ class MainFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         parentActivity = activity as FragmentActivity
+
+        // Enable Firestore logging
+        FirebaseFirestore.setLoggingEnabled(true)
+
         mDB = FirebaseFirestore.getInstance()
         // Get ${LIMIT} restaurants
         mQuery = mDB.collection("decks")
@@ -56,31 +61,16 @@ class MainFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
         // RecyclerView作成 // TODO: kotlin extension を後で使い方調べる
         val decksView = view.findViewById<RecyclerView>(R.id.decksRView)
         decksView.layoutManager = LinearLayoutManager(parentActivity)
-        decksView.adapter = DeckListAdapter(mQuery, this@MainFragment)
-
-
-        // Get Decks
-//        mDB.collection("decks")
-//                .get()
-//                .addOnCompleteListener{ task ->
-//                    if(task.isSuccessful){
-//                        for (document in task.result) {
-//                            Log.d(TAG, document.id + " => " + document.data)
-//                        }
-//                    } else {
-//                        Log.w(TAG, "Error getting decks.", task.exception)
-//                    }
-//                }
-
-
-//        val startButton = view.findViewById<Button>(R.id.start_button)
-//        startButton.setOnClickListener {
-//            // Create a new user with a first and last name
-//            val intent = Intent(parentActivity, TestPageActivity::class.java)
-//            startActivity(intent)
-//        }
+        mAdapter = DeckListAdapter(mQuery, this@MainFragment)
+        decksView.adapter = mAdapter
 
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Start listening for Firestore updates
+        mAdapter.startListening()
     }
 
     override fun onDeckSelected(restaurant: DocumentSnapshot) {
