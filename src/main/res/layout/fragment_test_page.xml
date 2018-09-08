@@ -8,7 +8,7 @@
     tools:context=".TestPageActivity$PlaceholderFragment">
 
     <TextView
-        android:id="@+id/flavor_text"
+        android:id="@+id/flavorText"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginLeft="8dp"

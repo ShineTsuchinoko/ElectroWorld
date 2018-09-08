@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.decks_row.view.*
+import kotlinx.android.synthetic.main.item_deck.view.*
 
 class Deck{
     val name = ""
@@ -30,8 +31,8 @@ class DeckRowHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 //                .load(restaurant.getPhoto())
 //                .into(imageView)
 
-        itemView.deckNameTView.text = deck.name
-        itemView.abstructTView.text = deck.abstruct
+        itemView.deckItemName.text = deck.name
+        itemView.deckItemAbstruct.text = deck.abstruct
 
         // Click listener
         itemView.setOnClickListener {
@@ -40,7 +41,7 @@ class DeckRowHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 }
 
-class DeckListAdapter(val mQuery: Query, val mListener: OnDeckSelectedListener)
+open class DeckListAdapter(val mQuery: Query, val mListener: OnDeckSelectedListener)
     : FirestoreAdapter<DeckRowHolder>(mQuery){
 
     interface OnDeckSelectedListener {
@@ -53,7 +54,7 @@ class DeckListAdapter(val mQuery: Query, val mListener: OnDeckSelectedListener)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeckRowHolder {
         val inflator = LayoutInflater.from(parent.context)
-        val view = inflator.inflate(R.layout.decks_row, parent, false)
+        val view = inflator.inflate(R.layout.item_deck, parent, false)
         val holder = DeckRowHolder(view)
         return holder
     }

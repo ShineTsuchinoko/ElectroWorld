@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -19,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.storage.images.FirebaseImageLoader
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import io.realm.Realm
 
 import kotlinx.android.synthetic.main.activity_test_page.*
 import kotlinx.android.synthetic.main.fragment_test_page.view.*
@@ -177,7 +175,7 @@ class TestPageActivity : AppCompatActivity() {
                     .into(mainImageView)
 
 
-            rootView.flavor_text.text = getString(R.string.section_format, arguments?.getInt(ARG_SECTION_NUMBER))
+            rootView.flavorText.text = getString(R.string.section_format, arguments?.getInt(ARG_SECTION_NUMBER))
             return rootView
         }
 

@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MenuActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/Polirhyzm">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +22,7 @@
         <activity
             android:name=".TestPageActivity"
             android:label="@string/title_activity_test_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/Polirhyzm"></activity>
 
     </application>
 

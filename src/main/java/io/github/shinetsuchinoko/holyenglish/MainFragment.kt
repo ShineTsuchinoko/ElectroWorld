@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -61,7 +63,15 @@ class MainFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
         // RecyclerView作成 // TODO: kotlin extension を後で使い方調べる
         val decksView = view.findViewById<RecyclerView>(R.id.decksRView)
         decksView.layoutManager = LinearLayoutManager(parentActivity)
-        mAdapter = DeckListAdapter(mQuery, this@MainFragment)
+        mAdapter = object: DeckListAdapter(mQuery = mQuery, mListener = this@MainFragment) {
+            override fun onDataChanged(){
+
+            }
+
+            override fun onError(e: FirebaseFirestoreException) =// Show a snackbar on errors
+                    Snackbar.make(view.findViewById<View>(android.R.id.content),
+                            "Error: check logs for info.", Snackbar.LENGTH_LONG).show()
+        }
         decksView.adapter = mAdapter
 
         return view
