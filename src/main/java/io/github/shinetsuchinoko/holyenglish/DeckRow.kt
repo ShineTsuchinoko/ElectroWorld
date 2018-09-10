@@ -10,12 +10,10 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.decks_row.view.*
 import kotlinx.android.synthetic.main.item_deck.view.*
 
-class Deck{
-    val name = ""
-    val abstruct = ""
+data class Deck(var name: String, var abstruct: String){
+    constructor(): this("", "")  // ViewHolderで使用している
 }
 
 class DeckRowHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,7 +21,7 @@ class DeckRowHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(snapshot: DocumentSnapshot,
              listener: DeckListAdapter.OnDeckSelectedListener) {
 
-        val deck = snapshot.toObject(Deck::class.java!!)
+        val deck = snapshot.toObject(Deck::class.java)
         val resources = itemView.resources
 
         // Load image

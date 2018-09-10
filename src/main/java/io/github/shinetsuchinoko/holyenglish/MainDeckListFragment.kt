@@ -1,9 +1,7 @@
 package io.github.shinetsuchinoko.holyenglish
 
 
-import android.app.Activity
 import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -11,8 +9,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.text.Layout
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,20 +16,19 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class MainFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
+class MainDeckListFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
 
     private lateinit var parentActivity: FragmentActivity
     private lateinit var mDB : FirebaseFirestore
     private lateinit var mQuery: Query
     private lateinit var mAdapter: DeckListAdapter
     private val cards = "dards"
-    private val TAG = "MainFragment"
+    private val TAG = "MainDeckListFragment"
     private lateinit var mViewModel: ViewModel
     private val LIMIT = 50
 
@@ -63,7 +58,7 @@ class MainFragment : Fragment(), DeckListAdapter.OnDeckSelectedListener{
         // RecyclerView作成 // TODO: kotlin extension を後で使い方調べる
         val decksView = view.findViewById<RecyclerView>(R.id.decksRView)
         decksView.layoutManager = LinearLayoutManager(parentActivity)
-        mAdapter = object: DeckListAdapter(mQuery = mQuery, mListener = this@MainFragment) {
+        mAdapter = object: DeckListAdapter(mQuery = mQuery, mListener = this@MainDeckListFragment) {
             override fun onDataChanged(){
 
             }
